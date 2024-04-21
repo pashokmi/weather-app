@@ -11,11 +11,13 @@ export interface CityCardProps {
 
 export const CityCard: React.FC<CityCardProps> = ({city, onDelete, onUpdate}) => {
 
+    const imageProps = `https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/${city.weather[0].icon}.png`
+    const linkProps = `/city/${city?.name.toLowerCase()}`
 
     return (
         <ListItem>
             <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p={4} m={2}>
-                <Link to={`/city/${city?.name.toLowerCase()}`}>
+                <Link to={linkProps}>
                     <Text borderBottom="3px solid #333" fontSize={'x-large'}> Weather
                         for {city.name} , {city.sys.country}.</Text>
 
@@ -23,7 +25,7 @@ export const CityCard: React.FC<CityCardProps> = ({city, onDelete, onUpdate}) =>
                         <Image height={'150px'}
                                maxWidth={'150px'}
                                width={'100%'}
-                               src={`https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/${city.weather[0].icon}.png`}
+                               src={imageProps}
                                alt="weather image"/>
                         <Flex flexDirection={'column'} alignItems={'center'} textAlign={'center'}>
                             <Text fontSize={'x-large'}>
