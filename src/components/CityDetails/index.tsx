@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {Box, Button, Flex, Image, Spinner, Text} from '@chakra-ui/react';
+import {Box, Flex, Image, Spinner, Text} from '@chakra-ui/react';
 import {RootState} from "../../store/reducers";
 import {fetchWeather} from "../../store/userDataSlice";
 
@@ -18,10 +18,7 @@ export const CityDetails: React.FC = () => {
             dispatch(fetchWeather(cityName));
         }
     }, [cityName, city, dispatch]);
-    const handleUpdate = () => {
-        // @ts-ignore
-        dispatch(fetchWeather(city.name));
-    };
+
     if (!city) {
         return <Flex justifyContent={'center'} alignItems={'center'} height={'40vh'}>
             <Spinner
