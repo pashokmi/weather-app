@@ -37,9 +37,6 @@ const userDataSlice = createSlice({
     name: 'userData',
     initialState,
     reducers: {
-        addCity(state, action: PayloadAction<CityData>) {
-            state.cities.push(action.payload);
-        },
         removeCity(state, action: PayloadAction<string>) {
             state.cities = state.cities.filter(city => city.name !== action.payload);
         },
@@ -75,5 +72,5 @@ const userDataSlice = createSlice({
     },
 });
 
-export const {addCity, removeCity, addUser} = userDataSlice.actions;
+export const { removeCity, addUser} = userDataSlice.actions;
 export default userDataSlice.reducer;

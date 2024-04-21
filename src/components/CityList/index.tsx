@@ -53,7 +53,6 @@ export const CityList: React.FC = () => {
 
     };
     const handleUpdate = (name: string) => {
-        // @ts-ignore
         dispatch(fetchWeather(name));
         toast.success('Weather data has been successfully updated!')
 
