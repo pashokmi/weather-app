@@ -1,5 +1,7 @@
 import {initializeApp} from 'firebase/app';
 import {getAuth, GoogleAuthProvider, signInWithPopup} from 'firebase/auth';
+import { getFirestore } from "firebase/firestore";
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyBYFMLxboxGyeWQOzRyFVnmTPmQgaAV6SE",
@@ -16,9 +18,9 @@ const googleAuthProvider = new GoogleAuthProvider();
 
 export interface User {
     uid: string;
-    email: string | null;
     displayName: string | null;
-    photoURL: string | null;
 }
+const db = getFirestore(app);
 
-export {auth, googleAuthProvider, signInWithPopup};
+
+export {auth, googleAuthProvider, signInWithPopup,db};
