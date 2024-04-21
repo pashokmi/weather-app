@@ -12,8 +12,10 @@ interface CitiesState {
 
 }
 
-const API_KEY = process.env.REACT_APP_API_KEY;
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+// const API_KEY = process.env.REACT_APP_API_KEY;
+// const BASE_URL = process.env.REACT_APP_BASE_URL;
+const API_KEY = 'c12a35b27197c5768b331f06b28615cb'
+const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather'
 
 export const fetchWeather = createAsyncThunk(
     'userData/fetchWeather',
@@ -72,5 +74,5 @@ const userDataSlice = createSlice({
     },
 });
 
-export const { removeCity, addUser} = userDataSlice.actions;
+export const {removeCity, addUser} = userDataSlice.actions;
 export default userDataSlice.reducer;
