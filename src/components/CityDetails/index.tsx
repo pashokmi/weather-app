@@ -1,20 +1,20 @@
 import React, {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {Box, Flex, Image, Spinner, Text} from '@chakra-ui/react';
 import {RootState} from "../../store/reducers";
 import {fetchWeather} from "../../store/userDataSlice";
+import {useAppDispatch} from "../../store";
 
 
 export const CityDetails: React.FC = () => {
     const {cityName} = useParams();
     const city = useSelector((state: RootState) => state.userData.cities.find(c => c.name.toLowerCase() === cityName?.toLowerCase()));
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         if (cityName && !city) {
-            // @ts-ignore
             dispatch(fetchWeather(cityName));
         }
     }, [cityName, city, dispatch]);

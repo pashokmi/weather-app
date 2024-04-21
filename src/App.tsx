@@ -3,12 +3,12 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import Login from "./components/Login";
 import {auth, User} from "./utils/firebaseApp";
 import Home from "./components/Home";
-import {useDispatch} from 'react-redux';
 import {addUser} from "./store/userDataSlice";
+import {useAppDispatch} from "./store";
 
 const App = () => {
     const [user, setUser] = useState<User | null>(null);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((nextUser: User | null) => setUser(nextUser));
         return () => unsubscribe();
@@ -16,7 +16,6 @@ const App = () => {
 
 
     useEffect(() => {
-
         if (user) {
             let userData: User = {
                 uid: user.uid,
@@ -24,7 +23,6 @@ const App = () => {
             }
             dispatch(addUser(userData));
         }
-        console.log('треба знати як часто юзер стрибає ')
     }, [dispatch, user])
 
 

@@ -21,9 +21,9 @@ console.log(API_KEY)
 
 export const fetchWeather = createAsyncThunk(
     'userData/fetchWeather',
-    async (city: CityData, {dispatch}) => {
+    async (city: string) => {
         const response = await axios.get(`${BASE_URL}?q=${city}&appid=${API_KEY}&units=metric`);
-        return response.data;
+        return response.data as CityData;
     }
 );
 
@@ -71,7 +71,6 @@ const userDataSlice = createSlice({
         });
         builder.addCase(removeCity, (state, action) => {
             state.cities = state.cities.filter(city => city.name !== action.payload);
-            console.log('builder removeCity')
             if (state.cities.length === 0) {
                 state.status = 'idle';
             }

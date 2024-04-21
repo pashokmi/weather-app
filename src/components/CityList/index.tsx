@@ -1,15 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Button, Flex, Input, List, Spinner, Text} from '@chakra-ui/react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {fetchWeather, removeCity} from "../../store/userDataSlice";
 import {CityCard} from "../CityCard";
 import {RootState} from "../../store/reducers";
-import {addCityForUser, deleteCityForUser, getUserData} from "../../utils/constans";
+import {addCityForUser, deleteCityForUser, getUserData} from "../../utils";
 import toast, {Toaster} from 'react-hot-toast';
+import {useAppDispatch} from "../../store";
 
 export const CityList: React.FC = () => {
     const [newCityName, setNewCityName] = useState('');
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const cities = useSelector((state: RootState) => state.userData.cities);
     const user = useSelector((state: RootState) => state.userData.user);
     const status = useSelector((state: RootState) => state.userData.status);
@@ -18,20 +19,15 @@ export const CityList: React.FC = () => {
         if (user && user.uid !== '') {
             getUserData(user.uid).then((response) => {
                 response?.forEach((city) => {
-                    // @ts-ignore
                     return dispatch(fetchWeather(city.city));
                 });
             });
         }
     }, [dispatch, user, user.uid]);
-    useEffect(() => {
-        console.log(status)
-
-    }, [status]);
+    useEffect(() => {}, [status]);
 
     const handleAddCity = () => {
         if (newCityName) {
-            // @ts-ignore
             dispatch(fetchWeather(newCityName))
                 .then((response: any) => {
                     addCityForUser(user.uid, response.payload)
@@ -128,7 +124,6 @@ export const CityList: React.FC = () => {
                         cities.map((city, index) => (
                             <CityCard
                                 key={index}
-                                // @ts-ignore
                                 city={city}
                                 onDelete={handleDeleteCity}
                                 onUpdate={handleUpdate}
