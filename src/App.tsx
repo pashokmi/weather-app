@@ -25,7 +25,7 @@ const App = () => {
             dispatch(addUser(userData));
         }
         console.log('треба знати як часто юзер стрибає ')
-    }, [user])
+    }, [dispatch, user])
 
 
     const handleLogout = () => {
