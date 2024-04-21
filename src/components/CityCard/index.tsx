@@ -11,8 +11,13 @@ export interface CityCardProps {
 
 export const CityCard: React.FC<CityCardProps> = ({city, onDelete, onUpdate}) => {
 
-    const imageProps = `https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/${city.weather[0].icon}.png`
-    const linkProps = `/city/${city?.name.toLowerCase()}`
+    let imageProps = ''
+    let linkProps = ''
+    if (city) {
+        imageProps = `https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/${city.weather[0].icon}.png`
+        linkProps = `/city/${city?.name.toLowerCase()}`
+    }
+
 
     return (
         <ListItem>
